@@ -1,11 +1,11 @@
 import { ActionIcon, Group, useMantineColorScheme } from '@mantine/core';
 import { Sun, MoonStars } from 'tabler-icons-react';
 
-export function ColorSchemeToggle() {
+export function ToggleDarkMode() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
-    <Group position="center" mt="xl">
+    <Group position="right" sx={{position:'absolute', top: '1rem', right: '1rem'}}>
       <ActionIcon
         onClick={() => toggleColorScheme()}
         size="xl"

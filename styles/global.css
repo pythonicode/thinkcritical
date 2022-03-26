@@ -1,0 +1,9 @@
+form.login {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    width: min(80%, 300px);
+}

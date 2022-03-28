@@ -4,6 +4,6 @@ form.login {
     flex-grow: 1;
     align-content: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
     width: min(80%, 300px);
 }

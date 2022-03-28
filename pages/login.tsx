@@ -44,7 +44,7 @@ export default function Login() {
             icon: <AlertCircle/>,
             color: 'red',
             title: "An error has occured.",
-            message: error.message
+            message: error.code
         })
     } else router.replace('/setup');
   }
@@ -58,17 +58,15 @@ export default function Login() {
             <Text color='dimmed' size='sm' align='center'>or</Text>
             <Divider my='sm'/>
         </Group>
+        <TextInput required label="Email" placeholder='you@example.com' {...loginForm.getInputProps('email')} {...createAccountForm.getInputProps('email')}/>
+        <PasswordInput required label="Password" placeholder='Password' {...loginForm.getInputProps('password')} {...createAccountForm.getInputProps('password')}/>
         {mode == 'login' 
         && (<>
-            <TextInput required label="Email" placeholder='you@example.com' {...loginForm.getInputProps('email')}/>
-            <PasswordInput required label="Password" placeholder='Password' {...loginForm.getInputProps('password')}/>
             <Button type='submit'>Login</Button>
             <Text color='dimmed' size='sm' align='center'>Don't have an account? <Anchor inherit onClick={() => setMode('create')}>Create Account</Anchor></Text>
         </>)}
         {mode == 'create' 
         && (<>
-            <TextInput required label="Email" placeholder='you@example.com' {...createAccountForm.getInputProps('email')}/>
-            <PasswordInput required label="Password" placeholder='Password' {...createAccountForm.getInputProps('password')}/>
             <PasswordInput required label="Confirm Password" placeholder='Confirm Password' {...createAccountForm.getInputProps('confirmPassword')}/>
             <Button type='submit'>Create Account</Button>
             <Text color='dimmed' size='sm' align='center'>Already have an account? <Anchor inherit onClick={() => setMode('login')}>Sign In</Anchor></Text>

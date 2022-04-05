@@ -3,7 +3,7 @@ import { Button, Group, TextInput, Text, Divider, Anchor, PasswordInput } from '
 import { useForm } from '@mantine/form';
 import { AlertCircle, BrandGoogle } from 'tabler-icons-react';
 import { useState } from 'react';
-import { createAccount } from '../lib/authentication';
+import { createAccount, signIn, signInWithGoogle } from '../lib/authentication';
 import { useNotifications } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 
@@ -49,10 +49,36 @@ export default function Login() {
     } else router.replace('/setup');
   }
 
+  async function handleSignIn(email: string, password: string) {
+    const { result, error } = await signIn(email, password);
+    if(error) {
+        notifications.showNotification({
+            icon: <AlertCircle/>,
+            color: 'red',
+            title: "An error has occured.",
+            message: error.code
+        })
+    } else router.replace('/setup');
+  }
+
+  async function handleSignInWithGoogle() {
+    const { result, error } = await signInWithGoogle();
+    if(error) {
+        notifications.showNotification({
+            icon: <AlertCircle/>,
+            color: 'red',
+            title: "An error has occured.",
+            message: error.code
+        })
+    } else router.replace('/setup');
+  }
+
+  
+
   return (
     <Group position='center' direction='column' sx={{height: '100vh'}}>
-      <form className='login' onSubmit={mode == 'login' ? loginForm.onSubmit((values) => console.log(values)) : createAccountForm.onSubmit(({email, password}) => handleCreateAccount(email, password))}>
-        <Button color='red' leftIcon={<BrandGoogle size={18}/>}> Sign in with Google</Button>
+      <form className='login' onSubmit={mode == 'login' ? loginForm.onSubmit(({email, password}) => handleSignIn(email, password)) : createAccountForm.onSubmit(({email, password}) => handleCreateAccount(email, password))}>
+        <Button color='red' leftIcon={<BrandGoogle size={18}/>} onClick={handleSignInWithGoogle}> Sign in with Google</Button>
         <Group position='center' grow>
             <Divider my='sm'/>
             <Text color='dimmed' size='sm' align='center'>or</Text>

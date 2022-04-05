@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 import '../styles/global.css';
 import { ToggleDarkMode } from '../components/global/ToggleDarkMode';
+import { FirebaseProvider } from '../components/providers/FirebaseProvider';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -28,10 +29,12 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       </Head>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-          <NotificationsProvider>
-            <ToggleDarkMode/>
-            <Component {...pageProps} />
-          </NotificationsProvider>
+          <FirebaseProvider>
+            <NotificationsProvider>
+              <ToggleDarkMode/>
+              <Component {...pageProps} />
+            </NotificationsProvider>
+          </FirebaseProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

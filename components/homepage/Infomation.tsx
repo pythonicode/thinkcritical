@@ -11,7 +11,7 @@ export default function Information() {
     return (
         <Tabs grow variant="pills" orientation="horizontal" position='center' sx={{width: 'min(95%, 700px)'}}>
         <Tabs.Tab label="Explore" icon={<Search size={14} />}>
-            <SimpleGrid mx='auto' sx={{maxWidth: '75vw'}}mt='lg' cols={3} spacing='lg' breakpoints={[{ maxWidth: 'md', cols: 2, spacing: 'lg' }, { maxWidth: 'sm', cols: 1, spacing: 'lg' },]}>
+            <SimpleGrid mx='auto' sx={{maxWidth: '75vw'}} mt='lg' cols={3} spacing='lg' breakpoints={[{ maxWidth: 'md', cols: 2, spacing: 'lg' }, { maxWidth: 'sm', cols: 1, spacing: 'lg' },]}>
                 <Card p='lg' shadow='md'>
                     <Card.Section>
                         <Image src='companies/twitter.png'></Image>
